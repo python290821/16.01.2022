@@ -43,3 +43,20 @@ language plpgsql AS
     $$;
 
 select * from sp_get_movies_mid() order by release_date;
+
+drop function sp_get_max;
+CREATE or replace function sp_get_max(_x integer, _y integer)
+returns integer
+language plpgsql AS
+    $$
+        BEGIN
+            if _x > _y then
+                return _x;
+            -- ELSEIF
+            else
+                return _y;
+            end if;
+        end;
+    $$;
+
+select * from sp_get_max(3, 2);
